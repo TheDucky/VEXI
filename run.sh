@@ -16,7 +16,7 @@ echo -e 'ExtensionInstaller.sh has been created!\n'
 
 read -p 'Would you like to backup settings.json as well? (Y/N): ' getSettings
 echo ''
-if [ "$getSettings" = "Y" ]; then
+if [ "${getSettings^^}" = "Y" ]; then
 	mkdir VEXI_backup
 	mv ExtensionInstaller.sh VEXI_backup
 	cp /home/$USER/.config/Code/User/settings.json settings.json
@@ -24,6 +24,10 @@ if [ "$getSettings" = "Y" ]; then
 	zip -r VEXI_backup.zip VEXI_backup
 	rm -r VEXI_backup
 	echo -e "\nALL DONE :)\nsettings.json and ExtensionInstaller.sh stored in VEXI_backup.zip"
-else
+
+elif [ "${getSettings^^}" = "N" ]; then
 	echo -e "\nALL DONE :)\nExtensionInstaller.sh has been created!"
+
+else 
+	echo 'That wasent a Yes or a No. :('
 fi
